@@ -15,4 +15,13 @@
 class Cat < ActiveRecord::Base
   validates :age, :color, :name, :sex, presence: :true
 
+  has_many(
+    :requests,
+    foreign_key: :cat_id,
+    primary_key: :id,
+    class_name: 'CatRentalRequest',
+    dependent: :destroy
+  )
+
+
 end

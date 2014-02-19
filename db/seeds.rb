@@ -20,3 +20,12 @@ Cat.create( age: 6, color: "black", name: "Django", sex: "M")
 Cat.create( age: 999, color: "brown", name: "Wordpres", sex: "F")
 Cat.create( age: 999999, color: "brown", name: "Gizmo", sex: "F")
 
+#<CatRentalRequest id: nil, cat_id: nil, start_date: nil, end_date: nil, status: nil, created_at: nil, updated_at: nil>
+
+CatRentalRequest.create(cat_id: 1, start_date: "2014-02-04", end_date: "2014-02-04", status: "PENDING")
+
+CatRentalRequest.create(cat_id: 1, start_date: "2014-02-05", end_date: "2014-02-08", status: "PENDING")
+CatRentalRequest.create(cat_id: 1, start_date: "2014-02-06", end_date: "2014-02-09", status: "PENDING")
+CatRentalRequest.create(cat_id: 1, start_date: "2014-02-05", end_date: "2014-02-07", status: "PENDING")
+
+
