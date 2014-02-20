@@ -5,4 +5,7 @@ Rentcats::Application.routes.draw do
     resources :cat_rental_requests
   end
 
+  post '/cats/:cat_id/cat_rental_requests/:id', to: 'cat_rental_requests#approve', as: 'approve'
+  post '/cats/:cat_id/cat_rental_requests/:id', to: 'cat_rental_requests#deny', as: 'deny'
+
 end

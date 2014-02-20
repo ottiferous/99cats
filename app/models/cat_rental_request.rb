@@ -24,7 +24,6 @@ class CatRentalRequest < ActiveRecord::Base
   )
 
   def overlapping_requests
-
     query = <<-SQL
     SELECT *
     FROM cat_rental_requests
@@ -38,9 +37,7 @@ class CatRentalRequest < ActiveRecord::Base
       :our_start_date => self.start_date,
       :our_end_date => self.end_date
     ])
-
     all_cat = cat_request - [self]
-
   end
 
   def overlapping_approved_requests
@@ -48,8 +45,25 @@ class CatRentalRequest < ActiveRecord::Base
     potential_conflicts.each do |cat_request|
       return false if cat_request.status == "APPROVED"
     end
-
     true
   end
+
+  def overlapping_pending_requests
+    CatRentalRequest.transaction do
+      self.approve!
+      self.overlapping_requests.each { |request| request.deny! }
+    end
+  end
+
+  def deny!
+    self.status = "DENIED"
+    self.save!
+  end
+
+  def approve!
+    self.status = "APPROVED"
+    self.save!
+  end
+
 
 end
