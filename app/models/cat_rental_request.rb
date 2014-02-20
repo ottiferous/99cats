@@ -45,6 +45,7 @@ class CatRentalRequest < ActiveRecord::Base
     potential_conflicts.each do |cat_request|
       return false if cat_request.status == "APPROVED"
     end
+
     true
   end
 

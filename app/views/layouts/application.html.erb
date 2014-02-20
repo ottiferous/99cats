@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Rentcats</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div class = "container">
+<%= render partial: 'layouts/head' %>
+<body style="padding-top:50px;">
+  <%= render partial: 'layouts/header' %>
+  <div class = "container">
 
-<%= yield %>
-</div>
+  <%= yield %>
+
+  </div>
 </body>
 </html>
