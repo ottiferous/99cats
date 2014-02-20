@@ -13,9 +13,16 @@
 
 class CatRentalRequest < ActiveRecord::Base
   validates :cat_id, :start_date, :end_date, presence: true
-  before_validation(on: :create) do
-    self.status = "PENDING"
+  validates :status, inclusion: { in: %w(PENDING APPROVED DENIED) }
+
+  before_validation(on: :create) do 
+    if self.overlapping_approved_requests
+      self.status = "PENDING"  
+    else
+      self.status = "DENIED"
+    end
   end
+  
   belongs_to(
     :cat,
     foreign_key: :cat_id,
@@ -29,14 +36,17 @@ class CatRentalRequest < ActiveRecord::Base
     FROM cat_rental_requests
     WHERE start_date < DATE(:our_end_date)
       AND end_date > DATE(:our_start_date)
+      AND cat_id = :id
     ORDER BY start_date
     SQL
 
     cat_request = CatRentalRequest.find_by_sql([
       query,
-      :our_start_date => self.start_date,
-      :our_end_date => self.end_date
+      our_start_date: self.start_date,
+      our_end_date: self.end_date,
+      id: self.cat_id
     ])
+    
     all_cat = cat_request - [self]
   end
 

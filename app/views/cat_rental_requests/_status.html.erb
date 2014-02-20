@@ -1,4 +1,4 @@
-<% @cat.requests.sort{|x| x.start_date }.each do |request| %>
+<% @cat.requests.sort_by {|x| x.start_date }.each do |request| %>
 <tr>
 	<td><%= request.start_date %></td>
 	<td><%= request.end_date %></td>

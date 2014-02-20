@@ -2,10 +2,12 @@
 <html>
 <%= render partial: 'layouts/head' %>
 <body style="padding-top:50px;">
-  <%= render partial: 'layouts/header' %>
+  <%= render partial: 'layouts/navbar' %>
   <div class = "container">
-
-  <%= yield %>
+    
+    <%= render partial: 'layouts/errors' %>
+    
+    <%= yield %>
 
   </div>
 </body>

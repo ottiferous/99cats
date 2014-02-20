@@ -1,7 +1,11 @@
-<h1>CATS!!</h1>
-<ul>
-	<% @cats.each do |cat| %>
-		<li><%= link_to cat.name, cat_url(cat) %> <%=button_to 'BBQ', cat_url(cat), method: :delete, class: 'btn btn-danger'%></li>
-	<% end %>
-</ul>
-
+<h1>CATS!!</h1><br>
+<table class="table table-striped table-hover">
+  <tbody>
+    <% @cats.each do |cat| %>
+    <tr>
+      <td><%= link_to cat.name, cat_url(cat), class: 'lead' %><td>
+      <td><%= button_to 'BBQ', cat_url(cat), method: :delete, class: 'btn btn-danger' %></td>
+    </tr>
+    <% end %>    
+  </tbody>  
+</table>
