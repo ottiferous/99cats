@@ -30,6 +30,7 @@ class CatRentalRequest < ActiveRecord::Base
     FROM cat_rental_requests
     WHERE start_date < DATE(:our_end_date)
       AND end_date > DATE(:our_start_date)
+    ORDER BY start_date
     SQL
 
     cat_request = CatRentalRequest.find_by_sql([

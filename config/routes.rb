@@ -1,6 +1,8 @@
 Rentcats::Application.routes.draw do
   root to: 'cats#index'
 
-  resources :cats
+  resources :cats do
+    resources :cat_rental_requests
+  end
 
 end
