@@ -14,7 +14,7 @@
 
 class Cat < ActiveRecord::Base
   validates :age, :color, :name, :sex, presence: :true
-  validates :color, inclusion: { in: %w(calico black white brown green), message: "- please share your cat's color with us :)" }
+  validates :color, inclusion: { in: %w(calico black white brown green), message: "choose color" }
   validates :sex, inclusion: { in: %w(M F) }
   validates :age, numericality: { only_integer: true, message: "should only be round numbers" }
 
